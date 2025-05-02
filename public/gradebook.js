@@ -8,9 +8,10 @@ function fetchGradeData () {
     // When the request changes status, we run this anonymous function
     xhr.onreadystatechange = function(){
         let results;
+
         // Check if we're done
-        if(xhr.readyState === xhr.Done){
-            // Check if we're successful
+        if(xhr.readyState === 4){ //Replaced xhr.Done with 4 to match assignment expectations
+            // Check if we're successful    
             if(xhr.status !== 200){
                 console.error(`Could not get grades.
                     Status: ${xhr.status}`);
@@ -27,7 +28,7 @@ function fetchGradeData () {
 function populateGradebook(data) {
     // This function will take the fetched grade data and populate the table
     console.log("Populating gradebook with data:", data);
-    let tableElm = document.getElementByID("gradebook"); // Get the gradebook table element
+    let tableElm = document.getElementById("gradebook"); // Get the gradebook table element
         data.forEach(function(assignment){ // For each row of data we're passed in 
             let row = document.createElement("tr"); // createe a table row element
             let colums = []; // Handy place to stick the colums of information
